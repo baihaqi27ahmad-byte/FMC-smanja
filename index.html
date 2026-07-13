@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fight Mugen Club - SMAN 1 Jalancagak</title>
+    <style>
+        * { box-sizing: border-box; transition: all 0.3s ease; }
+        body {
+            background-color: #0A0A0A;
+            color: #ffffff;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* --- 1. NAVIGASI --- */
+        nav {
+            background-color: rgba(0, 0, 0, 0.95);
+            border-bottom: 2px solid #E50914;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky; top: 0; z-index: 100;
+        }
+        .brand-title { color: #ffffff; font-weight: 800; font-size: 16px; margin: 0; }
+        .brand-sub { color: #a1a1aa; font-size: 10px; margin: 0; }
+        .btn-hubungi { background-color: #E50914; color: white; border: none; padding: 8px 16px; font-weight: bold; font-size: 11px; border-radius: 4px; cursor: pointer; }
+
+        /* --- 2. HERO / BERANDA --- */
+               /* --- 2. HERO / BERANDA (VERSI BARU & KEREN) --- */
+        .hero {
+            padding: 60px 20px 40px 20px; 
+            text-align: center;
+            /* Latar Belakang Gambar Silat + Overlay Gelap Gradient */
+            background: linear-gradient(180deg, rgba(10, 10, 10, 0.75) 0%, rgba(10, 10, 10, 0.95) 100%), 
+                        url('bg-silat.jpg') no-repeat center center/cover;
+            min-height: 80vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center;
+            position: relative;
+        }
+
+        /* Kartu Kaca (Glassmorphism Bar) di Belakang Judul */
+        .hero-card-box {
+            background: rgba(18, 18, 18, 0.65);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(229, 9, 20, 0.3);
+            border-radius: 16px;
+            padding: 25px 15px;
+            width: 100%;
+            max-width: 360px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin-top: 10px;
+        }
+
+        .tagline { 
+            color: #D4AF37; 
+            font-size: 11px; 
+            font-weight: bold; 
+            letter-spacing: 2px; 
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+        }
+
+        .hero-title { 
+            font-size: 26px; 
+            font-weight: 900; 
+            margin: 10px 0 0 0; 
+            letter-spacing: 1px;
+        }
+
+        .hero-title-red { 
+            color: #E50914; 
+            font-size: 26px; 
+            font-weight: 900; 
+            margin: 0; 
+            letter-spacing: 1px;
+            text-shadow: 0 0 15px rgba(229, 9, 20, 0.5);
+        }
+
+        .quote-box { min-height: 35px; margin: 12px auto 5px auto; }
+        .quote { font-style: italic; color: #D4AF37; font-size: 12px; border-right: 2px solid #E50914; display: inline-block; }
+
+        .logo-container {
+            width: 120px; height: 120px; 
+            border: 3px solid #D4AF37; 
+            border-radius: 50%;
+            margin: 10px auto; 
+            display: flex; align-items: center; justify-content: center;
+            background: #121212; 
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); 
+            cursor: pointer;
+        }
+
+        .flex-buttons { display: flex; justify-content: center; gap: 10px; margin-top: 15px; }
+        
+        .btn-red { 
+            background: linear-gradient(135deg, #E50914 0%, #b30006 100%); 
+            color: white; border: none; padding: 12px 18px; 
+            font-weight: bold; font-size: 12px; border-radius: 6px; cursor: pointer;
+            box-shadow: 0 4px 12px rgba(229, 9, 20, 0.4);
+        }
+
+        .btn-gold-outline { 
+            border: 2px solid #D4AF37; color: #D4AF37; background: rgba(0, 0, 0, 0.4); 
+            padding: 12px 18px; font-weight: bold; font-size: 12px; border-radius: 6px; cursor: pointer;
+            backdrop-filter: blur(4px);
+        }
+
+ 
+
+        /* --- 3. QUICK INFO BAR --- */
+        .info-bar {
+            background-color: #000000; border-y: 1px solid #27272a; padding: 20px 10px;
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; text-align: center;
+        }
+        .info-item h5 { color: #D4AF37; margin: 0 0 3px 0; font-size: 12px; }
+        .info-item p { color: #a1a1aa; margin: 0; font-size: 10px; }
+
+        /* --- 4. TENTANG KAMI, JADWAL & VISI MISI --- */
+        .about-section { padding: 40px 20px; background-color: #0A0A0A; }
+        .section-tag { color: #E50914; font-size: 11px; font-weight: bold; text-transform: uppercase; }
+        .section-title { font-size: 22px; font-weight: 800; margin: 5px 0 15px 0; }
+        .about-text { color: #a1a1aa; font-size: 13px; line-height: 1.6; }
+        .card { background-color: #121212; border: 1px solid #27272a; padding: 20px; border-radius: 6px; margin-bottom: 15px; text-align: center; }
+        .card h4 { color: #D4AF37; margin: 0 0 8px 0; font-size: 14px; }
+        .card p { color: #a1a1aa; margin: 0; font-size: 12px; }
+        
+        /* TUGAS JADWAL LATIHAN */
+        .jadwal-table { width: 100%; border-collapse: collapse; margin-top: 10px; text-align: left; font-size: 12px; }
+        .jadwal-table th { color: #D4AF37; border-bottom: 1px solid #E50914; padding: 8px 5px; }
+        .jadwal-table td { color: #a1a1aa; padding: 8px 5px; border-bottom: 1px solid #27272a; }
+
+        /* --- 5. PRESTASI --- */
+        .prestasi-section { padding: 40px 20px; background-color: #0F0F0F; }
+        .filter-buttons { display: flex; gap: 8px; margin-bottom: 20px; }
+        .btn-filter { background: #18181b; border: 1px solid #27272a; color: white; padding: 6px 12px; font-size: 12px; border-radius: 4px; cursor: pointer; }
+        .btn-filter.active { background: #E50914; border-color: #E50914; font-weight: bold; }
+        
+        .prestasi-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        .p-card { background-color: #121212; border: 1px solid #27272a; border-radius: 8px; overflow: hidden; cursor: pointer; }
+        .p-card:hover { border-color: #E50914; transform: translateY(-3px); }
+        .p-card.hidden { display: none; }
+        .p-img-placeholder { background-color: #27272a; height: 140px; display: flex; align-items: center; justify-content: center; color: #71717a; font-size: 12px; }
+        .p-info { padding: 15px; }
+        .p-year { background-color: #E50914; color: white; font-size: 10px; font-weight: bold; padding: 2px 8px; border-radius: 3px; display: inline-block; }
+        .p-title { font-size: 14px; font-weight: bold; margin: 10px 0 5px 0; }
+        .p-level { color: #D4AF37; font-size: 11px; margin: 0 0 10px 0; }
+        .p-rank { color: #ffffff; font-size: 12px; font-weight: bold; border-top: 1px dashed #27272a; padding-top: 8px; margin: 0; }
+        .click-hint { font-size: 10px; color: #E50914; margin-top: 5px; text-align: right; font-style: italic; }
+
+        /* --- 6. STRUKTUR ORGANISASI --- */
+        .struktur-section { padding: 40px 20px; background-color: #0A0A0A; text-align: center; }
+        .s-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 15px; }
+        .s-badge { background-color: #121212; border: 1px solid #27272a; padding: 12px 8px; border-radius: 6px; cursor: pointer; }
+        .s-badge:hover { border-color: #D4AF37; background-color: #18181b; transform: scale(1.02); }
+        .s-badge.full-width { grid-column: span 2; }
+        .s-role { font-size: 10px; font-weight: bold; color: #D4AF37; margin: 0; text-transform: uppercase; }
+        .s-name { font-size: 12px; font-weight: bold; color: white; margin: 3px 0 0 0; }
+
+        /* --- 7. PENDAFTARAN --- */
+        .daftar-section { padding: 40px 20px; background-color: #0F0F0F; }
+        .d-box { background-color: #121212; border: 1px solid #27272a; padding: 20px; border-radius: 8px; margin-bottom: 15px; }
+        .d-box h4 { color: #E50914; margin: 0 0 10px 0; font-size: 14px; }
+        .d-box ul { margin: 0; padding-left: 15px; color: #a1a1aa; font-size: 12px; }
+
+        /* --- MODAL DIALOG POP-UP --- */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; z-index: 200; }
+        .modal-overlay.active { opacity: 1; pointer-events: all; }
+        .modal-card { background: #121212; border: 1px solid #E50914; border-radius: 12px; padding: 25px; width: 90%; max-width: 380px; position: relative; max-height: 85vh; overflow-y: auto; }
+        .modal-close { position: absolute; top: 15px; right: 15px; color: #a1a1aa; font-size: 18px; border: none; background: none; cursor: pointer; }
+        .form-input { width: 100%; padding: 10px; margin: 6px 0 12px 0; background: #18181b; border: 1px solid #27272a; color: white; border-radius: 4px; font-size: 12px; }
+        .form-input:focus { outline: none; border-color: #D4AF37; }
+
+        .atlet-item { background: #18181b; border-left: 3px solid #D4AF37; padding: 8px 12px; margin-bottom: 8px; border-radius: 0 4px 4px 0; font-size: 12px; }
+        footer { background-color: #000000; padding: 30px 20px; text-align: center; border-top: 1px solid #27272a; font-size: 11px; color: #71717a; }
+    </style>
+</head>
+<body>
+
+    <!-- 1. NAVIGASI -->
+    <nav>
+        <div>
+            <h1 class="brand-title">FIGHT MUGEN CLUB</h1>
+            <p class="brand-sub">SMAN 1 JALANCAGAK</p>
+        </div>
+        <button class="btn-hubungi" onclick="alert('WhatsApp Admin FMC: 0838-2245-7197')">HUBUNGI KAMI</button>
+    </nav>
+
+    <!-- 2. HERO / BERANDA -->
+     <!-- 2. HERO / BERANDA (DENGAN BACKGROUND & GLASS BAR) -->
+    <section class="hero">
+        <span class="tagline">EKSTRAKURIKULER PENCAK SILAT</span>
+        
+        <div class="logo-container" onclick="alert('🥋 Salam Pesilat! Fight Mugen Club SMANJA!')">
+            <img src="logo fmc.png" alt="Logo FMC" style="width:100%; height:100%; border-radius:50%; object-fit: cover;">
+        </div>
+
+        <!-- Wadah Kartu Transparan (Glassmorphism Bar) -->
+        <div class="hero-card-box">
+            <h2 class="hero-title">FIGHT MUGEN CLUB</h2>
+            <h2 class="hero-title-red">SMAN 1 JALANCAGAK</h2>
+            
+            <div class="quote-box">
+                <span id="typing-text" class="quote"></span>
+            </div>
+
+            <div class="flex-buttons">
+                <button class="btn-red" onclick="document.getElementById('prestasi').scrollIntoView({behavior: 'smooth'})">LIHAT PRESTASI</button>
+                <button class="btn-gold-outline" onclick="bukaModal('modalForm')">DAFTAR SEKARANG</button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 3. QUICK INFO BAR -->
+    <section class="info-bar">
+        <div class="info-item"><h5>PENCAK SILAT</h5><p>Warisan budaya bangsa</p></div>
+        <div class="info-item"><h5>DISIPLIN</h5><p>Kunci sukses utama</p></div>
+        <div class="info-item"><h5>PRESTASI</h5><p>Bergerak & berjuang</p></div>
+        <div class="info-item"><h5>KEBERSAMAAN</h5><p>Satu tujuan, satu keluarga</p></div>
+    </section>
+
+    <!-- 4. TENTANG KAMI, JADWAL LATIHAN & VISI MISI -->
+    <section class="about-section">
+        <span class="section-tag">Tentang Kami</span>
+        <h3 class="section-title">FIGHT MUGEN CLUB</h3>
+        <p class="about-text" style="margin-bottom: 20px;">
+            Fight Mugen Club Smanja adalah ekstrakurikuler pencak silat di SMAN 1 Jalancagak yang berfokus pada pembentukan karakter, kedisiplinan, serta pengembangan prestasi di bidang pencak silat.
+        </p>
+
+        <!-- KARTU JADWAL LATIHAN -->
+        <div class="card" style="text-align: left;">
+            <h4 style="text-align: center; border-bottom: 1px dashed #27272a; padding-bottom: 5px;">🗓️ JADWAL LATIHAN</h4>
+            <table class="jadwal-table">
+                <tr><th>Hari</th><th>Waktu</th><th>Lokasi </th></tr>
+                <tr><td>Rabu</td><td>15.30 - selesai</td><td>Lap. Smanja</td></tr>
+                <tr><td>Jumat</td><td>13.00- selesai</td><td>Lap. Smanja</td></tr>
+            </table>
+        </div>
+
+        <div class="card"><h4>VISI</h4><p>Menjadi wadah pencak silat unggul yang berkarakter, berakhlak mulia, dan membanggakan sekolah.</p></div>
+        <div class="card"><h4>MISI</h4><p>Melatih siswa menjadi pesilat yang disiplin, berprestasi, berakhlak mulia, dan menjunjung tinggi sportivitas.</p></div>
+    </section>
+
+    <!-- 5. PRESTASI KAMI -->
+    <section class="prestasi-section" id="prestasi">
+        <span class="section-tag">Galeri Juara</span>
+        <h3 class="section-title">PRESTASI KAMI</h3>
+        
+        <div class="filter-buttons">
+            <button class="btn-filter active" id="btn-all" onclick="filterPrestasi('all')">Semua</button>
+            <button class="btn-filter" id="btn-2026" onclick="filterPrestasi('2026')">2026</button>
+            <button class="btn-filter" id="btn-2025" onclick="filterPrestasi('2025')">2025</button>
+        </div>
+        
+        <div class="prestasi-grid">
+            <div class="p-card item-2026" onclick="bukaDetailPrestasi('LADWITRA GRAND SERIES OF PENCAK SILAT', 'Tingkat Provinsi', '2026', ['🥇 Meraih medali emas kategori tanding kelas E remaja putra (Dikri)', '🥇 Meraih medali emas kategori tanding kelas C remaja putri (dafina)'])">
+                <div class="p-img-placeholder"><img src="Ladwitra.jpg" alt="Ladwitra 2026" style="width:100%; height:140px; object-fit: cover; "></div>
+                <div class="p-info">
+                    <span class="p-year">2026</span>
+                    <div class="p-title">LADWITRA GRAND SERIES OF PENCAK SILAT</div>
+                    <div class="p-level">Tingkat Provinsi</div>
+                    <p class="p-rank">🏆 JUARA 1 UMUM</p>
+                    <div class="click-hint">Klik untuk lihat rincian atlet 👉</div>
+                </div>
+            </div>
+            
+            <div class="p-card item-2025" onclick="bukaDetailPrestasi('BLAC IV', 'Tingkat Nasional', '2025', ['🥈 Meraih medali perak kategori tanding kelas F putri (Shovi)'])">
+                <div class="p-img-placeholder">[ FOTO BLAC IV ]</div>
+                <div class="p-info">
+                    <span class="p-year">2025</span>
+                    <div class="p-title">BLAC IV</div>
+                    <div class="p-level">Tingkat Nasional</div>
+                    <p class="p-rank">🏆 JUARA 2 UMUM</p>
+                    <div class="click-hint">Klik untuk lihat rincian atlet 👉</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. STRUKTUR ORGANISASI (FOTO DIATUR DINAMIS PER ORANG) -->
+    <section class="struktur-section">
+        <span class="section-tag">Kepengurusan</span>
+        <h3 class="section-title">STRUKTUR ORGANISASI</h3>
+        
+        <div class="s-grid">
+            <div class="s-badge full-width" style="border-color: #E50914;" onclick="bukaDetailPengurus('PEMBINA', 'PAK DADAN', 'Mengarahkan dan membina seluruh kegiatan ekstrakurikuler FMC.', 'pembina.jpg')">
+                <p class="s-role">PEMBINA</p><p class="s-name">PAK DADAN</p>
+            </div>
+            <div class="s-badge full-width" style="border-color: #D4AF37;" onclick="bukaDetailPengurus('PELATIH UTAMA', 'REVA', 'Melatih teknik, fisik, dan kedisiplinan para pesilat.', 'pelatih.jpg')">
+                <p class="s-role">PELATIH</p><p class="s-name">REVA</p>
+            </div>
+            <div class="s-badge full-width" onclick="bukaDetailPengurus('KETUA EKSKUL', 'AHMAD', 'Penanggung jawab utama seluruh operasional FMC.', 'ketua.jpg')">
+                <p class="s-role">KETUA</p><p class="s-name">AHMAD</p>
+            </div>
+            <div class="s-badge" onclick="bukaDetailPengurus('WAKIL KETUA 1', 'ZIKRA', 'Membantu ketua dalam urusan internal.', 'waket1.jpg')">
+                <p class="s-role">WAKIL KETUA 1</p><p class="s-name">ZIKRA</p>
+            </div>
+            <div class="s-badge" onclick="bukaDetailPengurus('WAKIL KETUA 2', 'FADIL', 'Membantu ketua dalam urusan eksternal.', 'fadil.jpg')">
+                <p class="s-role">WAKIL KETUA 2</p><p class="s-name">FADIL</p>
+            </div>
+            <div class="s-badge" onclick="bukaDetailPengurus('SEKRETARIS', 'FIRDA', 'Mengelola administrasi dan surat-menyurat.', 'sekretaris.jpg')">
+                <p class="s-role">SEKRETARIS</p><p class="s-name">FIRDA</p>
+            </div>
+            <div class="s-badge" onclick="bukaDetailPengurus('BENDAHARA', 'DAFINA', 'Mengatur keuangan dan kas organisasi.', 'bendahara.jpg')">
+                <p class="s-role">BENDAHARA</p><p class="s-name">DAFINA</p>
+            </div>
+            <div class="s-badge" onclick="bukaDetailPengurus('SEKBID ABSENSI', 'GEMA', 'Mencatat kehadiran anggota saat latihan.', 'gema.jpg')">
+                <p class="s-role">SEKBID ABSENSI</p><p class="s-name">GEMA</p>
+            </div>
+            <div class="s-badge" onclick="bukaDetailPengurus('SEKBID LATIHAN 1', 'ANNISA', 'Membantu persiapan materi dan fisik latihan.', 'latihan1.jpg')">
+                <p class="s-role">SEKBID LATIHAN 1</p><p class="s-name">ANNISA</p>
+            </div>
+            <div class="s-badge" onclick="bukaDetailPengurus('SEKBID LATIHAN 2', 'DIKRI', 'Membantu evaluasi perkembangan atlet.', 'latihan2.jpg')">
+                <p class="s-role">SEKBID LATIHAN 2</p><p class="s-name">DIKRI</p>
+            </div>
+            <div class="s-badge" onclick="bukaDetailPengurus('SEKBID KEAGAMAAN', 'RIZKA', 'Memimpin doa dan kegiatan spiritual anggota.', 'keagamaan.jpg')">
+                <p class="s-role">SEKBID KEAGAMAAN</p><p class="s-name">RIZKA</p>
+            </div>
+            <div class="s-badge" onclick="bukaDetailPengurus('SEKBID PERALATAN', 'WIBISANA', 'Bertanggung jawab atas perlengkapan latihan.', 'peralatan.jpg')">
+                <p class="s-role">SEKBID PERALATAN</p><p class="s-name">WIBISANA</p>
+            </div>
+            <div class="s-badge" onclick="bukaDetailPengurus('SEKBID DOKUMENTASI', 'NAZWA', 'Mendokumentasikan kegiatan & media sosial.', 'dokumentasi.jpg')">
+                <p class="s-role">SEKBID DOKUMENTASI</p><p class="s-name">NAZWA</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. PENDAFTARAN ANGGOTA BARU -->
+    <section class="daftar-section">
+        <span class="section-tag">Gabung Bersama Kami</span>
+        <h3 class="section-title">PENDAFTARAN BARU</h3>
+        <div class="d-box">
+            <h4>SYARAT PENDAFTARAN</h4>
+            <ul>
+                <li>Siswa/i aktif SMAN 1 Jalancagak</li>
+                <li>Sehat jasmani & rohani</li>
+                <li>Bersedia mengikuti latihan dengan disiplin</li>
+            </ul>
+        </div>
+        <button class="btn-red" style="width: 100%; padding: 15px;" onclick="bukaModal('modalForm')">DAFTAR SEKARANG 👉</button>
+    </section>
+
+    <!-- POP-UP MODAL FORM PENDAFTARAN -->
+    <div class="modal-overlay" id="modalForm">
+        <div class="modal-card">
+            <button class="modal-close" onclick="tutupModal('modalForm')">✕</button>
+            <h3 style="color: #D4AF37; margin-top: 0; font-size: 16px;">Form Pendaftaran FMC</h3>
+            <p style="color: #a1a1aa; font-size: 11px; margin-bottom: 12px;">Isi data di bawah untuk dikirim langsung ke WhatsApp Ketua FMC.</p>
+            
+            <form onsubmit="kirimFormKeWA(event)">
+                <label style="font-size: 11px; color: #ccc;">Nama Lengkap:</label>
+                <input type="text" id="formNama" class="form-input" placeholder="Masukkan nama..." required>
+
+                <label style="font-size: 11px; color: #ccc;">Kelas / Gugus:</label>
+                <input type="text" id="formKelas" class="form-input" placeholder="Contoh: X-1 / Gugus 3" required>
+
+                <label style="font-size: 11px; color: #ccc;">Alamat Rumah:</label>
+                <input type="text" id="formAlamat" class="form-input" placeholder="Nama desa/kecamatan..." required>
+
+                <label style="font-size: 11px; color: #ccc;">Asal Sekolah (SMP):</label>
+                <input type="text" id="formAsalSekolah" class="form-input" placeholder="Contoh: SMPN 1 Jalancagak" required>
+
+                <label style="font-size: 11px; color: #ccc;">No. WhatsApp Aktif:</label>
+                <input type="tel" id="formWa" class="form-input" placeholder="08xxxxxxxxxx" required>
+
+                <button type="submit" class="btn-red" style="width: 100%; font-size: 13px; margin-top: 5px;">KIRIM KE WHATSAPP 💬</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- POP-UP MODAL PRESTASI -->
+    <div class="modal-overlay" id="modalPrestasi">
+        <div class="modal-card">
+            <button class="modal-close" onclick="tutupModal('modalPrestasi')">✕</button>
+            <span class="p-year" id="mYear">2024</span>
+            <h3 style="color: #D4AF37; margin: 10px 0 2px 0; font-size: 16px;" id="mTitle">Detail Kejuaraan</h3>
+            <p style="color: #a1a1aa; font-size: 11px; margin-bottom: 15px;" id="mLevel">Tingkat</p>
+            <h4 style="color: #E50914; font-size: 12px; margin-bottom: 8px;">RAIHAN MEDALI & ATLET:</h4>
+            <div id="mListAtlet"></div>
+        </div>
+    </div>
+
+    <!-- POP-UP MODAL PENGURUS (SEKARANG FOTONYA DINAMIS MENGGUNAKAN ID "pFoto") -->
+    <div class="modal-overlay" id="modalPengurus">
+        <div class="modal-card" style="text-align: center;">
+            <button class="modal-close" onclick="tutupModal('modalPengurus')">✕</button>
+            <div style="margin-bottom: 10px;">
+    <img id="pFoto" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'><rect width='80' height='80' fill='%2327272a'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' fill='%23D4AF37' font-size='10' font-family='sans-serif'>NO FOTO</text></svg>" alt="Foto Pengurus" style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid #D4AF37; object-fit: cover; background: #27272a;">
+</div>
+
+            <p style="color: #E50914; font-size: 11px; font-weight: bold; margin: 0;" id="pRole">JABATAN</p>
+            <h3 style="color: #D4AF37; margin: 4px 0 10px 0; font-size: 16px;" id="pName">Nama Pengurus</h3>
+            <p style="color: #a1a1aa; font-size: 12px; line-height: 1.4;" id="pDesc">Deskripsi tugas.</p>
+        </div>
+    </div>
+
+    <!-- 8. FOOTER -->
+    <footer>
+        <p>© 2026 Fight Mugen Club Smanja. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIK INTERAKTIF -->
+    <script>
+        // Efek Ketik Semboyan
+        const teks = '"JAYA DI GELANGGANG, HEBAT DI KEHIDUPAN"';
+        let index = 0;
+        function ketik() { if (index < teks.length) { document.getElementById("typing-text").innerHTML += teks.charAt(index); index++; setTimeout(ketik, 40); } }
+        window.onload = ketik;
+
+        // Kontrol Modal Umum
+        function bukaModal(id) { document.getElementById(id).classList.add("active"); }
+        function tutupModal(id) { document.getElementById(id).classList.remove("active"); }
+
+        // LOGIK UTAMA: KIRIM DATA FORM KE WHATSAPP
+        function kirimFormKeWA(e) {
+            e.preventDefault();
+            
+            const nomorWaTujuan = "6283822457197"; 
+
+            // Ambil data dari input formulir
+            const nama = document.getElementById("formNama").value;
+            const kelas = document.getElementById("formKelas").value;
+            const alamat = document.getElementById("formAlamat").value;
+            const asalSekolah = document.getElementById("formAsalSekolah").value;
+            const waAktif = document.getElementById("formWa").value;
+
+            // Atur format text teks agar rapi saat masuk ke WA
+            const pesanTeks = `*PENDAFTARAN ANGGOTA BARU FMC*%0A`
+                            + `=========================%0A`
+                            + `• *Nama Lengkap :* ${nama}%0A`
+                            + `• *Kelas/Gugus  :* ${kelas}%0A`
+                            + `• *Alamat       :* ${alamat}%0A`
+                            + `• *Asal Sekolah  :* ${asalSekolah}%0A`
+                            + `• *WhatsApp     :* ${waAktif}%0A`
+                            + `=========================%0A`
+                            + `Mohon segera di proses, Terima kasih! 🥋`;
+
+            const urlWhatsApp = `https://api.whatsapp.com/send?phone=${nomorWaTujuan}&text=${pesanTeks}`;
+
+            window.open(urlWhatsApp, '_blank');
+            tutupModal('modalForm');
+        }
+
+        // Modal Rincian Prestasi
+        function bukaDetailPrestasi(judul, tingkat, tahun, daftarAtlet) {
+            document.getElementById("mTitle").innerText = judul;
+            document.getElementById("mLevel").innerText = tingkat;
+            document.getElementById("mYear").innerText = tahun;
+            let htmlAtlet = "";
+            daftarAtlet.forEach(item => { htmlAtlet += `<div class="atlet-item">${item}</div>`; });
+            document.getElementById("mListAtlet").innerHTML = htmlAtlet;
+            bukaModal("modalPrestasi");
+        }
+
+        // Modal Rincian Pengurus (DIPERBARUI: Menerima data foto secara dinamis)
+        // Modal Rincian Pengurus (Fix Bug Gambar Tersangkut)
+function bukaDetailPengurus(jabatan, nama, deskripsi, fileFoto) {
+    document.getElementById("pRole").innerText = jabatan;
+    document.getElementById("pName").innerText = nama;
+    document.getElementById("pDesc").innerText = deskripsi;
+    
+    const imgElement = document.getElementById("pFoto");
+    const fotoDefault = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'><rect width='80' height='80' fill='%2327272a'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' fill='%23D4AF37' font-size='10' font-family='sans-serif'>NO FOTO</text></svg>";
+
+    // 1. Jika tombol pengurus tidak diberi nama foto (atau kosong), langsung ganti ke gambar default
+    if (!fileFoto || fileFoto === "") {
+        imgElement.src = fotoDefault;
+    } else {
+        // 2. Jika ada nama fotonya, pasang fotonya
+        imgElement.src = fileFoto;
+    }
+
+    // 3. Jika file foto tidak ditemukan di HP, otomatis ubah ke tampilan 'NO FOTO' (tidak bakal pakai foto ketua lagi!)
+    imgElement.onerror = function() {
+        this.src = fotoDefault;
+    };
+
+    bukaModal("modalPengurus");
+}
+
+
+        // Filter Tahun Prestasi
+        function filterPrestasi(tahun) {
+            document.querySelectorAll('.btn-filter').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.p-card').forEach(card => card.classList.add('hidden'));
+            if(tahun === 'all') {
+                document.getElementById('btn-all').classList.add('active');
+                document.querySelectorAll('.p-card').forEach(card => card.classList.remove('hidden'));
+            } else {
+                document.getElementById('btn-' + tahun).classList.add('active');
+                document.querySelectorAll('.item-' + tahun).forEach(card => card.classList.remove('hidden'));
+            }
+        }
+    </script>
+</body>
+</html>
