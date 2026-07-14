@@ -1,0 +1,21 @@
+{
+  "short_name": "FMC SMANJA",
+  "name": "Fight Mugen Club SMAN 1 Jalancagak",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "favicon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "./index.html",
+  "background_color": "#0A0A0A",
+  "display": "standalone",
+  "theme_color": "#E50914",
+  "orientation": "portrait"
+}

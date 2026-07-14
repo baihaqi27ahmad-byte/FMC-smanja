@@ -4,8 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fight Mugen Club - SMAN 1 Jalancagak</title>
+<!-- Favicon / Ikon Tab Browser -->
+<link rel="icon" type="image/png" href="favicon.png">
+<!-- AOS CSS -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<!-- PWA Manifest Link -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#E50914">
+
+
     <style>
-        * { box-sizing: border-box; transition: all 0.3s ease; }
+        * { box-sizing: border-box; }
         body {
             background-color: #0A0A0A;
             color: #ffffff;
@@ -289,10 +298,12 @@
 
     <!-- 2. HERO / BERANDA -->
      <!-- 2. HERO / BERANDA (DENGAN BACKGROUND & GLASS BAR) -->
-    <section class="hero">
+ <section class="hero" data-aos="fade-up">
+
         <span class="tagline">EKSTRAKURIKULER PENCAK SILAT</span>
         
-        <div class="logo-container" onclick="bukaModalFMC()">
+<div class="logo-container" onclick="bukaModalFMC()" data-aos="zoom-in">
+
             <img src="logo fmc.png" alt="Logo FMC" style="width:100%; height:100%; border-radius:50%; object-fit: cover;">
         </div>
 
@@ -315,10 +326,10 @@
 
     <!-- 3. QUICK INFO BAR -->
     <section class="info-bar">
-        <div class="info-item"><h5>PENCAK SILAT</h5><p>Warisan budaya bangsa</p></div>
-        <div class="info-item"><h5>DISIPLIN</h5><p>Kunci sukses utama</p></div>
-        <div class="info-item"><h5>PRESTASI</h5><p>Bergerak & berjuang</p></div>
-        <div class="info-item"><h5>KEBERSAMAAN</h5><p>Satu tujuan, satu keluarga</p></div>
+        <div class="info-item" data-aos="fade-up"><h5>PENCAK SILAT</h5><p>Warisan budaya bangsa</p></div>
+        <div class="info-item" data-aos="fade-up"><h5>DISIPLIN</h5><p>Kunci sukses utama</p></div>
+        <div class="info-item" data-aos="fade-up"><h5>PRESTASI</h5><p>Bergerak & berjuang</p></div>
+        <div class="info-item" data-aos"fade-up"><h5>KEBERSAMAAN</h5><p>Satu tujuan, satu keluarga</p></div>
     </section>
 
     <!-- 4. TENTANG KAMI, JADWAL LATIHAN & VISI MISI -->
@@ -330,7 +341,7 @@
         </p>
 
         <!-- KARTU JADWAL LATIHAN -->
-        <div class="card" style="text-align: left;">
+        <div class="card" style="text-align: left;" data-aos="zoom-in">
             <h4 style="text-align: center; border-bottom: 1px dashed #27272a; padding-bottom: 5px;">🗓️ JADWAL LATIHAN</h4>
             <table class="jadwal-table">
                 <tr><th>Hari</th><th>Waktu</th><th>Lokasi </th></tr>
@@ -339,8 +350,8 @@
             </table>
         </div>
 
-        <div class="card"><h4>VISI</h4><p>Menjadi wadah pencak silat unggul yang berkarakter, berakhlak mulia, dan membanggakan sekolah.</p></div>
-        <div class="card"><h4>MISI</h4><p>Melatih siswa menjadi pesilat yang disiplin, berprestasi, berakhlak mulia, dan menjunjung tinggi sportivitas.</p></div>
+        <div class="card" data-aos="zoom-in"><h4>VISI</h4><p>Menjadi wadah pencak silat unggul yang berkarakter, berakhlak mulia, dan membanggakan sekolah.</p></div>
+        <div class="card" data-aos="zoom-in"><h4>MISI</h4><p>Melatih siswa menjadi pesilat yang disiplin, berprestasi, berakhlak mulia, dan menjunjung tinggi sportivitas.</p></div>
     </section>
 
     <!-- 5. PRESTASI KAMI -->
@@ -348,13 +359,13 @@
         <span class="section-tag">Galeri Juara</span>
         <h3 class="section-title">PRESTASI KAMI</h3>
         
-        <div class="filter-buttons">
+        <div class="filter-buttons" data-aos="fade-right">
             <button class="btn-filter active" id="btn-all" onclick="filterPrestasi('all')">Semua</button>
             <button class="btn-filter" id="btn-2026" onclick="filterPrestasi('2026')">2026</button>
             <button class="btn-filter" id="btn-2025" onclick="filterPrestasi('2025')">2025</button>
         </div>
         
-        <div class="prestasi-grid">
+        <div class="prestasi-grid" data-aos="zoom-in">
             <div class="p-card item-2026" onclick="bukaDetailPrestasi('LADWITRA GRAND SERIES OF PENCAK SILAT', 'Tingkat Provinsi', '2026', ['🥇 Meraih medali emas kategori tanding kelas E remaja putra (Dikri)', '🥇 Meraih medali emas kategori tanding kelas C remaja putri (dafina)'])">
                 <div class="p-img-placeholder"><img src="Ladwitra.jpg" alt="Ladwitra 2026" style="width:100%; height:140px; object-fit: cover; "></div>
                 <div class="p-info">
@@ -366,7 +377,7 @@
                 </div>
             </div>
             
-            <div class="p-card item-2025" onclick="bukaDetailPrestasi('BLAC IV', 'Tingkat Nasional', '2025', ['🥈 Meraih medali perak kategori tanding kelas F putri (Shovi)'])">
+            <div class="p-card item-2025" onclick="bukaDetailPrestasi('BLAC IV','Tingkat Nasional', '2025', ['🥈 Meraih medali perak kategori tanding kelas F putri (Shovi)'])">
                 <div class="p-img-placeholder">[ FOTO BLAC IV ]</div>
                 <div class="p-info">
                     <span class="p-year">2025</span>
@@ -384,7 +395,7 @@
         <span class="section-tag">Kepengurusan</span>
         <h3 class="section-title">STRUKTUR ORGANISASI</h3>
         
-        <div class="s-grid">
+        <div class="s-grid" data-aos="fade-up">
             <div class="s-badge full-width" style="border-color: #E50914;" onclick="bukaDetailPengurus('PEMBINA', 'PAK DADAN', 'Mengarahkan dan membina seluruh kegiatan ekstrakurikuler FMC.', 'pembina.jpg')">
                 <p class="s-role">PEMBINA</p><p class="s-name">PAK DADAN</p>
             </div>
@@ -431,7 +442,7 @@
     <section class="daftar-section">
         <span class="section-tag">Gabung Bersama Kami</span>
         <h3 class="section-title">PENDAFTARAN BARU</h3>
-        <div class="d-box">
+        <div class="d-box" data-aos="zoom-out">
             <h4>SYARAT PENDAFTARAN</h4>
             <ul>
                 <li>Siswa/i aktif SMAN 1 Jalancagak</li>
@@ -686,6 +697,13 @@ window.onclick = function(event) {
         </div>
     </div>
 </div>
-
+<!-- AOS JS & Init -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000, // Durasi animasi (1 detik)
+    once: true,     // Animasi cuma jalan sekali pas di-scroll
+  });
+</script>
 </body>
 </html>
