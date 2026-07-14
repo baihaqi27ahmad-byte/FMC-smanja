@@ -179,6 +179,100 @@
 
         .atlet-item { background: #18181b; border-left: 3px solid #D4AF37; padding: 8px 12px; margin-bottom: 8px; border-radius: 0 4px 4px 0; font-size: 12px; }
         footer { background-color: #000000; padding: 30px 20px; text-align: center; border-top: 1px solid #27272a; font-size: 11px; color: #71717a; }
+/* --- MODAL POP-UP LOGO FMC --- */
+.custom-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content-lencana {
+    background: rgba(20, 20, 20, 0.85);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid #E50914;
+    padding: 25px;
+    border-radius: 16px;
+    width: 85%;
+    max-width: 380px;
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(229, 9, 20, 0.3);
+    position: relative;
+    animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.close-modal-fmc {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 24px;
+    color: #a1a1aa;
+    cursor: pointer;
+}
+
+.close-modal-fmc:hover { color: #fff; }
+.modal-emoji { font-size: 45px; display: block; margin-bottom: 10px; }
+.modal-body-fmc h3 { margin: 8px 0; color: #D4AF37; font-size: 20px; }
+.modal-body-fmc p { font-size: 13px; line-height: 1.5; color: #ddd; }
+
+.btn-tutup-fmc {
+    background: linear-gradient(135deg, #E50914, #b30006);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    margin-top: 18px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    width: 100%;
+}
+/* Styling List & Tombol Medsos di Modal */
+.sosmed-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.btn-sosmed {
+    display: block;
+    padding: 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    transition: transform 0.2s, filter 0.2s;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-sosmed:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.2);
+}
+
+.btn-sosmed.ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+.btn-sosmed.tt { background: #000000; border-color: #00f2fe; }
+.btn-sosmed.wa { background: #25D366; }
+
+
     </style>
 </head>
 <body>
@@ -189,7 +283,8 @@
             <h1 class="brand-title">FIGHT MUGEN CLUB</h1>
             <p class="brand-sub">SMAN 1 JALANCAGAK</p>
         </div>
-        <button class="btn-hubungi" onclick="alert('WhatsApp Admin FMC: 0838-2245-7197')">HUBUNGI KAMI</button>
+        <button class="btn-hubungi" onclick="hubungiAdmin()">HUBUNGI KAMI</button>
+
     </nav>
 
     <!-- 2. HERO / BERANDA -->
@@ -197,7 +292,7 @@
     <section class="hero">
         <span class="tagline">EKSTRAKURIKULER PENCAK SILAT</span>
         
-        <div class="logo-container" onclick="alert('🥋 Salam Pesilat! Fight Mugen Club SMANJA!')">
+        <div class="logo-container" onclick="bukaModalFMC()">
             <img src="logo fmc.png" alt="Logo FMC" style="width:100%; height:100%; border-radius:50%; object-fit: cover;">
         </div>
 
@@ -498,6 +593,99 @@ function bukaDetailPengurus(jabatan, nama, deskripsi, fileFoto) {
                 document.querySelectorAll('.item-' + tahun).forEach(card => card.classList.remove('hidden'));
             }
         }
+// Fungsi Kontrol Modal Logo
+function bukaModalFMC() {
+    document.getElementById('modalLogoFMC').style.display = 'flex';
+}
+function tutupModalFMC() {
+    document.getElementById('modalLogoFMC').style.display = 'none';
+}
+
+// Fungsi Kontrol Modal Sosmed (Hubungi Kami)
+function hubungiAdmin() {
+    document.getElementById('modalSosmedFMC').style.display = 'flex';
+}
+function tutupModalSosmed() {
+    document.getElementById('modalSosmedFMC').style.display = 'none';
+}
+
+// Efek Api Bertaburan saat Klik SALAM RESPEK
+function aksiSalamRespek(e) {
+    // Bikin 25 partikel api sekaligus
+    for (let i = 0; i < 25; i++) {
+        let api = document.createElement('span');
+        api.innerText = '🔥';
+        api.style.position = 'fixed';
+        api.style.fontSize = Math.random() * (24 - 14) + 14 + 'px';
+        api.style.left = e.clientX + 'px';
+        api.style.top = e.clientY + 'px';
+        api.style.zIndex = '99999';
+        api.style.pointerEvents = 'none';
+        api.style.transition = 'all 0.8s cubic-bezier(0.1, 0.8, 0.3, 1)';
+        
+        document.body.appendChild(api);
+
+        // Arah ledakan acak (X dan Y)
+        let sudut = Math.random() * Math.PI * 2;
+        let jarak = Math.random() * 120 + 30;
+        let x = Math.cos(sudut) * jarak;
+        let y = Math.sin(sudut) * jarak - 30; // Sedikit melengkung ke atas
+
+        setTimeout(() => {
+            api.style.transform = `translate(${x}px, ${y}px) scale(0)`;
+            api.style.opacity = '0';
+        }, 10);
+
+        // Hapus elemen dari HTML setelah animasi selesai
+        setTimeout(() => { api.remove(); }, 800);
+    }
+
+    // Tutup modal setelah jeda sedikit biar kelihatan apinya
+    setTimeout(() => { tutupModalFMC(); }, 400);
+}
+
+// Tutup modal jika klik di area luar kotak transparan
+window.onclick = function(event) {
+    let modalLogo = document.getElementById('modalLogoFMC');
+    let modalSosmed = document.getElementById('modalSosmedFMC');
+    if (event.target == modalLogo) modalLogo.style.display = 'none';
+    if (event.target == modalSosmed) modalSosmed.style.display = 'none';
+}
+
+
     </script>
+<!-- 1. Modal Pop-Up Logo FMC -->
+<div id="modalLogoFMC" class="custom-modal">
+    <div class="modal-content-lencana">
+        <span class="close-modal-fmc" onclick="tutupModalFMC()">&times;</span>
+        <div class="modal-body-fmc">
+            <span class="modal-emoji">🥋</span>
+            <h3>Salam Pesilat!</h3>
+            <p>Selamat datang di Official Website <strong>Fight Mugen Club SMAN 1 Jalancagak</strong>. Bersama kita kuat, berprestasi, dan berakhlak mulia!</p>
+            <!-- Tombol ini sekarang memicu efek api -->
+            <button class="btn-tutup-fmc" onclick="aksiSalamRespek(event)">SALAM RESPEK!</button>
+        </div>
+    </div>
+</div>
+
+<!-- 2. Modal Pop-Up Media Sosial (Hubungi Kami) -->
+<div id="modalSosmedFMC" class="custom-modal">
+    <div class="modal-content-lencana">
+        <span class="close-modal-fmc" onclick="tutupModalSosmed()">&times;</span>
+        <div class="modal-body-fmc">
+            <span class="modal-emoji">📞</span>
+            <h3>Hubungi Kami</h3>
+            <p style="margin-bottom: 15px;">Ikuti dan hubungi official akun resmi FMC SMANJA di bawah ini:</p>
+            
+            <!-- Daftar Link Medsos -->
+            <div class="sosmed-list">
+                <a href="https://www.instagram.com/fmcsmanja_" target="_blank" class="btn-sosmed ig">📸 Instagram</a>
+                <a href="https://tiktok.com/@fmc_smanja" target="_blank" class="btn-sosmed tt">🎵 TikTok</a>
+                <a href="https://api.whatsapp.com/send?phone=6283822457197&text=Halo%20Admin%20FMC..." target="_blank" class="btn-sosmed wa">💬 WhatsApp Admin</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
